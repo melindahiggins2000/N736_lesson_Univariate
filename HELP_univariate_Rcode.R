@@ -45,6 +45,12 @@ library(dplyr)
 
 # run a basic summary of
 # age, pcs, mcs and cesd
+
+helpdata %>%
+  select(age,pcs,mcs,cesd) %>%
+  summary()
+
+
 hsub <- helpdata %>%
   select(age,pcs,mcs,cesd) %>%
   summary()
@@ -118,6 +124,11 @@ psychout <- helpdata %>%
   psych::describe()
 
 psychout
+
+mean(helpdata$age)
+sd(helpdata$age)
+
+summary(helpdata$racegrp)
 
 # other ways to get frequency tables
 library(gmodels)

@@ -258,6 +258,11 @@ proc means data=help;
   class racegrp;
   run;
 
+proc means data=help;
+  var age;
+  class treat;
+  run;
+
 * categorical data;
 
 proc freq data=help;
@@ -268,6 +273,12 @@ proc freq data=help;
 
 proc freq data=help;
   tables f1a / plots=freqplot;
+  run;
+
+* get percents by treatment group;
+
+proc freq data=help;
+  tables racegrp * treat / chisq;
   run;
 
 * apply formats;
