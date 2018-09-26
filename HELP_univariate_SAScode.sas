@@ -172,12 +172,12 @@ modify helpmkh / correctencoding="WLATIN1";
    format linkstatus LINKSTATUS.;
 quit;
 
-proc contents data=L7.helpmkh; run;
-
 * make a copy in the WORK library;
 DATA work.help;
   SET L7.helpmkh;
   RUN;
+
+proc contents data=help; run;
 
 * get univariate stats;
 proc univariate data=help plots;
@@ -271,7 +271,7 @@ proc freq data=help;
   run;
 
 * apply formats;
-
+* SKIP;
 proc freq data=help;
   tables f1a / plots=freqplot;
   FORMAT f1a F1A.;
