@@ -2,7 +2,7 @@
 #' Working with the HELP dataset
 #' 
 #' Melinda Higgins, PhD
-#' dated 09/17/2017
+#' last updated 09/26/2018
 #' =======================================
 
 # The *.Rdata file can be downloaded from the SASR website

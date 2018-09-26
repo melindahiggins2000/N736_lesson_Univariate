@@ -1,5 +1,6 @@
 * ==========================================;
-* N736 Lesson 07 - 09/18/2017
+* N736 Lesson 07 - by Melinda Higgins, PhD
+* last updated 09/26/2018
 *
 * Univariate Stats
 * working with the HELP dataset
@@ -7,11 +8,175 @@
 
 * create a library - change to your directory
 * where you have downloaded the help.sas7bdat dataset;
-LIBNAME L7 'C:\MyGithub\N736Fall2017_lesson07';
+LIBNAME L7 'C:\MyGithub\N736_lesson_Univariate';
+
+* =========================================
+* apply FORMATS
+* =========================================;
+
+proc format library = WORK ;
+   value TREAT
+      0 = 'usual care'  
+      1 = 'HELP clinic' ;
+   value FEMALE
+      0 = 'Male'  
+      1 = 'Female' ;
+   value HOMELESS
+      0 = 'no'  
+      1 = 'yes' ;
+   value G1B
+      0 = 'no'  
+      1 = 'yes' ;
+   value F1A
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1B
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1C
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1D
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1E
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1F
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1G
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1H
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1I
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1J
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1K
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1L
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1M
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1N
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1O
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1P
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1Q
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1R
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1S
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value F1T
+      0 = 'Not at all or less than 1 day'  
+      1 = '1-2 days'  
+      2 = '3-4 days'  
+      3 = '5-7 days or nearly every day for 2 weeks' ;
+   value SATREAT
+      0 = 'no'  
+      1 = 'yes' ;
+   value DRINKSTATUS
+      0 = 'no'  
+      1 = 'yes' ;
+   value ANYSUBSTATUS
+      0 = 'no'  
+      1 = 'yes' ;
+   value LINKSTATUS
+      0 = 'no'  
+      1 = 'yes' ;
+
+proc datasets library = WORK;
+modify helpmkh / correctencoding="WLATIN1";
+   format     treat TREAT.;
+   format    female FEMALE.;
+   format  homeless HOMELESS.;
+   format       g1b G1B.;
+   format       f1a F1A.;
+   format       f1b F1B.;
+   format       f1c F1C.;
+   format       f1d F1D.;
+   format       f1e F1E.;
+   format       f1f F1F.;
+   format       f1g F1G.;
+   format       f1h F1H.;
+   format       f1i F1I.;
+   format       f1j F1J.;
+   format       f1k F1K.;
+   format       f1l F1L.;
+   format       f1m F1M.;
+   format       f1n F1N.;
+   format       f1o F1O.;
+   format       f1p F1P.;
+   format       f1q F1Q.;
+   format       f1r F1R.;
+   format       f1s F1S.;
+   format       f1t F1T.;
+   format   satreat SATREAT.;
+   format drinkstatus DRINKSTATUS.;
+   format anysubstatus ANYSUBSTATUS.;
+   format linkstatus LINKSTATUS.;
+quit;
+
+proc contents data=L7.helpmkh; run;
 
 * make a copy in the WORK library;
 DATA work.help;
-  SET L7.help;
+  SET L7.helpmkh;
   RUN;
 
 * get univariate stats;
@@ -19,7 +184,7 @@ proc univariate data=help plots;
   var age;
   run;
 
-* get univariate stats
+* OPTIONAL - pay attention to options
 * can change the percentile algorithm
 * default is PCTLDEF=5, but there are
 * options 1,2,3,4 or 5 - see help for more details;
@@ -35,7 +200,8 @@ proc univariate data=help plots pctldef=1;
 
 * get univariate stats
 * add histogram
-* and overlay normal curve;
+* and overlay normal curve
+* and get normal probability tests;
 
 proc univariate data=help plots pctldef=1;
   var age;
@@ -98,5 +264,16 @@ proc freq data=help;
   tables racegrp / plots=freqplot;
   run;
 
+* without the formats applied;
 
+proc freq data=help;
+  tables f1a / plots=freqplot;
+  run;
+
+* apply formats;
+
+proc freq data=help;
+  tables f1a / plots=freqplot;
+  FORMAT f1a F1A.;
+  run;
 
