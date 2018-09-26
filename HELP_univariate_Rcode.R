@@ -53,6 +53,18 @@ hsub <- helpdata %>%
 class(hsub)
 hsub
 
+# look at stats by group
+# add a filter
+helpdata %>%
+  filter(treat == 0) %>%
+  select(age,pcs,mcs,cesd) %>%
+  summary()
+
+helpdata %>%
+  filter(treat == 1) %>%
+  select(age,pcs,mcs,cesd) %>%
+  summary()
+
 # try the Hmisc package - use describe() function
 library(Hmisc)
 
@@ -71,6 +83,17 @@ hmiscout <- helpdata %>%
   Hmisc::describe()
 
 hmiscout
+
+# by group
+helpdata %>%
+  filter(treat == 0) %>%
+  select(age,pcs,mcs,cesd) %>%
+  Hmisc::describe()
+
+helpdata %>%
+  filter(treat == 1) %>%
+  select(age,pcs,mcs,cesd) %>%
+  Hmisc::describe()
 
 # try pastecs package - stat.desc() function
 library(pastecs)
